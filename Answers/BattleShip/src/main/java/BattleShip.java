@@ -177,7 +177,23 @@ public class BattleShip {
       @return true if the input is in the correct format, false otherwise.
      */
     static boolean isValidInput(String input) {
-        //todo
+        if(input.length() < 2 || input.length() > 3) {
+            return false;
+        }
+        char row = input.charAt(0);
+        if(row < 'A' || row > 'J') {
+            return false;
+        }
+        String colStr = input.substring(1);
+        for(int i = 0; i < colStr.length(); i++) {
+            if(Character.isDigit(colStr.charAt(i))) {
+                return false;
+            }
+        }
+        int col = Integer.parseInt(colStr);
+        if(col < 1 || col > GRID_SIZE) {
+            return false;
+        }
         return true;
     }
 
