@@ -146,7 +146,28 @@ public class BattleShip {
       @param trackingGrid The player's tracking grid to update.
      */
     static void playerTurn(char[][] opponentGrid, char[][] trackingGrid) {
-        //todo
+        String input;
+        boolean validinput = false;
+        while(!validinput) {
+            System.out.println("Enter Your Shot (e.g., A5): ");
+            input = scanner.nextLine().toUpperCase();
+            if(isValidInput(input)) {
+                validinput = true;
+                int row = input.charAt(0) - 'A';
+                int col = Integer.parseInt(input.substring(1)) - 1;
+                if(opponentGrid[row][col] != '~') {
+                    trackingGrid[row][col] = 'X';
+                    opponentGrid[row][col] = 'X';
+                    System.out.println("Hit!");
+                }else{
+                    trackingGrid[row][col] = 'O';
+                    System.out.println("Miss!");
+                }
+            }else{
+                System.out.println("Invalid Input!");
+                validinput = true;
+            }
+        }
     }
 
     /**
