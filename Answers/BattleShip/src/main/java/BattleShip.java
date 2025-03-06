@@ -80,7 +80,27 @@ public class BattleShip {
       @param grid The grid where ships need to be placed.
      */
     static void placeShips(char[][] grid) {
-        //todo
+        int[] ships = {2,3,4,5};
+        for(int size : ships) {
+            boolean placed = false;
+            while(!placed) {
+            int row = (int) (Math.random() * GRID_SIZE);
+            int col = (int) (Math.random() * GRID_SIZE);
+            boolean horizontal = Math.random() < 0.5;
+            if(canPlaceShip(grid,row,col,size,horizontal)) {
+                if(horizontal) {
+                    for(int i = 0; i < size; i++) {
+                        grid[row][col + i] = 'S';
+                    }
+                }else{
+                    for(int i = 0; i < size; i++) {
+                        grid[row + i][col] = 'S';
+                    }
+                }
+                    placed = true;
+            }
+        }
+    }
     }
 
     /**
